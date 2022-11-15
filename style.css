@@ -1,0 +1,265 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  background-color: #63b4f5;
+  color: white;
+}
+.container {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.container .stage {
+  position: relative;
+  flex: 1;
+}
+.container .stage header {
+  max-width: 540px;
+  width: 100%;
+  margin: 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .stage header h1, .container .stage header h2 {
+  font-family: Neo sans;
+  text-align: center;
+}
+.container .stage header h1 {
+  text-transform: uppercase;
+  font-size: 64px;
+  text-shadow: 0px 1px #e52521, 1px 2px #e52521, 2px 3px #e52521, 3px 4px #e52521, 4px 5px #e52521, 8px 9px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.container .stage header h2 {
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+.container .stage header p.info {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #049cd8;
+}
+@media screen and (max-width: 639px) {
+  .container .stage header {
+    max-width: 400px;
+  }
+  .container .stage header h1 {
+    font-size: 48px;
+  }
+  .container .stage header h2 {
+    font-size: 12px;
+    line-height: 16px;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 399px) {
+  .container .stage header {
+    max-width: 300px;
+  }
+  .container .stage header h1 {
+    font-size: 32px;
+  }
+  .container .stage header h2 {
+    font-size: 11px;
+    line-height: 14px;
+    margin-bottom: 10px;
+  }
+}
+.container .stage #events {
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  left: 50vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+}
+.container .stage #events .event {
+  position: relative;
+  flex: 0 0 50px;
+  width: 50px;
+  height: 71px;
+  margin-left: 100px;
+  cursor: pointer;
+  background-color: #43b047;
+  background-image: url(./assets/pipe.jpg);
+  background-size: 100%;
+}
+.container .stage #events .event::before, .container .stage #events .event::after {
+  position: absolute;
+  font-family: "Press Start 2P", sans-serif;
+}
+.container .stage #events .event::before {
+  content: attr(data-month);
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height: 12px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -150%);
+}
+.container .stage #events .event::after {
+  content: attr(data-title);
+  min-width: 510px;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  color: black;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -40%) scale(0);
+  background-color: white;
+  padding: 10px;
+  border: 4px solid #43b047;
+  transition: transform 150ms ease-out;
+}
+.container .stage #events .event.active::after {
+  display: block;
+  transition: transform 500ms steps(6, end);
+  transform: translate(-50%, calc(-100% - 50px)) scale(1);
+}
+.container .ground {
+  position: relative;
+  flex: 0 0 30vh;
+  transition: background-position;
+  transition-timing-function: ease-in-out;
+  margin-top: auto;
+  background-color: brown;
+  background-position: 0px 32px;
+  background-image: url(./assets/ground.jpg);
+}
+.container .ground .grass {
+  position: absolute;
+  left: 0;
+  top: -17px;
+  width: 100%;
+  height: 32px;
+  transition-property: background-position;
+  transition-timing-function: ease-in-out;
+  background-image: url(./assets/grass.jpg);
+}
+
+.mario {
+  position: absolute;
+  width: 32px;
+  height: 48px;
+  left: 50%;
+  bottom: 17px;
+  transform: translateX(-50%);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  background-image: url(./assets/mario.jpg);
+}
+@-webkit-keyframes walk-left-loop {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -64px;
+  }
+}
+@keyframes walk-left-loop {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -64px;
+  }
+}
+@-webkit-keyframes walk-right-loop {
+  0% {
+    background-position: -128px;
+  }
+  100% {
+    background-position: -192px;
+  }
+}
+@keyframes walk-right-loop {
+  0% {
+    background-position: -128px;
+  }
+  100% {
+    background-position: -192px;
+  }
+}
+@-webkit-keyframes search {
+  0% {
+    background-position: -64px;
+  }
+  100% {
+    background-position: -128px;
+  }
+}
+@keyframes search {
+  0% {
+    background-position: -64px;
+  }
+  100% {
+    background-position: -128px;
+  }
+}
+@-webkit-keyframes walk-left {
+  0% {
+    left: 85%;
+  }
+  100% {
+    left: 15%;
+  }
+}
+@keyframes walk-left {
+  0% {
+    left: 85%;
+  }
+  100% {
+    left: 15%;
+  }
+}
+@-webkit-keyframes walk-right {
+  0% {
+    left: 15%;
+  }
+  100% {
+    left: 85%;
+  }
+}
+@keyframes walk-right {
+  0% {
+    left: 15%;
+  }
+  100% {
+    left: 85%;
+  }
+}
+.mario.idle {
+  -webkit-animation: none;
+          animation: none;
+  background-position: -192px;
+}
+.mario.walk-left {
+  -webkit-animation: walk-left-loop 0.2s steps(2) infinite;
+          animation: walk-left-loop 0.2s steps(2) infinite;
+}
+.mario.walk-right {
+  -webkit-animation: walk-right-loop 0.2s steps(2) infinite;
+          animation: walk-right-loop 0.2s steps(2) infinite;
+}
+.mario.search-left {
+  -webkit-animation: search 2s steps(2) infinite;
+          animation: search 2s steps(2) infinite;
+}
+.mario.search-right {
+  -webkit-animation: search 2s steps(2) infinite;
+          animation: search 2s steps(2) infinite;
+}/*# sourceMappingURL=style.css.map */
